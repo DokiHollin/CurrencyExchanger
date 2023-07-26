@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="UITest" tests="10" skipped="0" failures="0" errors="0" timestamp="2022-09-13T15:30:36" hostname="DESKTOP-V593GE4" time="0.93">
+  <properties/>
+  <testcase name="testHistoryFrameUI()" classname="UITest" time="0.22"/>
+  <testcase name="testGetEachRateFrameUI()" classname="UITest" time="0.177"/>
+  <testcase name="testSetPopularityUI()" classname="UITest" time="0.044"/>
+  <testcase name="testDeleteRateFrameUI()" classname="UITest" time="0.068"/>
+  <testcase name="testUIForAdmin()" classname="UITest" time="0.139"/>
+  <testcase name="testExchangeFrameUI()" classname="UITest" time="0.061"/>
+  <testcase name="testLoginFrameUI()" classname="UITest" time="0.046"/>
+  <testcase name="testAddRateFrameUI()" classname="UITest" time="0.047"/>
+  <testcase name="testUIForNormal()" classname="UITest" time="0.076"/>
+  <testcase name="testSetRateFrameUI()" classname="UITest" time="0.045"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

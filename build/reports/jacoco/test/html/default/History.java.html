@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>History.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SOFT2412_Assignment1</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">History.java</span></div><h1>History.java</h1><pre class="source lang-java linenums">import java.io.*;
+import java.util.*;
+import java.time.*;
+
+public class History {
+    public File file;
+
+<span class="fc" id="L8">    public History(String filename) {</span>
+<span class="fc" id="L9">        this.file = new File(filename);</span>
+<span class="fc" id="L10">    }</span>
+
+    public void changeFile(String from, String to, double rate) {
+<span class="fc" id="L13">        FileWriter fw = null;</span>
+<span class="fc" id="L14">        Calendar c = Calendar.getInstance();</span>
+<span class="fc" id="L15">        int year = c.get(Calendar.YEAR);</span>
+<span class="fc" id="L16">        int month = c.get(Calendar.MONTH);</span>
+<span class="fc" id="L17">        int date = c.get(Calendar.DATE);</span>
+
+        try {
+<span class="fc" id="L20">            fw = new FileWriter(this.file, true);</span>
+<span class="nc" id="L21">        } catch (IOException | NullPointerException e) {</span>
+<span class="nc" id="L22">            e.printStackTrace();</span>
+<span class="fc" id="L23">        }</span>
+
+<span class="fc" id="L25">        PrintWriter pw = new PrintWriter(fw);</span>
+<span class="fc" id="L26">        String write = String.format(&quot;change rate %.2f from %s to %s on %d/%d/%d&quot;, rate, from, to, date, month, year);</span>
+<span class="fc" id="L27">        pw.println(write);</span>
+<span class="fc" id="L28">        pw.flush();</span>
+        try {
+<span class="fc" id="L30">            fw.flush();</span>
+<span class="fc" id="L31">            pw.close();</span>
+<span class="fc" id="L32">            fw.close();</span>
+<span class="nc" id="L33">        } catch (IOException | NullPointerException e) {</span>
+<span class="nc" id="L34">            e.printStackTrace();</span>
+<span class="fc" id="L35">        }</span>
+<span class="fc" id="L36">    }</span>
+
+
+    public String readFile() {
+<span class="fc" id="L40">        StringBuilder log = new StringBuilder();</span>
+        try {
+<span class="fc" id="L42">            BufferedReader bf = new BufferedReader(new FileReader(this.file));</span>
+<span class="fc" id="L43">            String line = null;</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">            while ((line = bf.readLine()) != null) {</span>
+<span class="fc" id="L45">                log.append(&quot;\n&quot;).append(line);</span>
+
+            }
+<span class="fc" id="L48">            bf.close();</span>
+<span class="nc" id="L49">        } catch (IOException | NullPointerException e) {</span>
+<span class="nc" id="L50">            e.printStackTrace();</span>
+<span class="fc" id="L51">        }</span>
+<span class="fc" id="L52">        return log.toString();</span>
+
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

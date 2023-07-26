@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Rate.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SOFT2412_Assignment1</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Rate.java</span></div><h1>Rate.java</h1><pre class="source lang-java linenums">import javax.swing.*;
+import java.awt.*;
+import java.util.*;
+
+public class Rate {
+    private String country;
+    private String[] rate;
+    private int popularity;
+
+<span class="fc" id="L10">    private HashMap&lt;Integer,Integer&gt; varied = new HashMap&lt;&gt;();</span>
+
+<span class="fc" id="L12">    public Rate(String country, String rates) {</span>
+<span class="fc" id="L13">        this.country = country;</span>
+<span class="fc" id="L14">        this.rate = rates.split(&quot;,&quot;);</span>
+<span class="fc bfc" id="L15" title="All 2 branches covered.">        for(int i = 0; i &lt; App.countryArray.length; i ++){</span>
+<span class="fc" id="L16">            varied.put(i,0);</span>
+        }
+<span class="fc" id="L18">        this.popularity = 0;</span>
+<span class="fc" id="L19">    }</span>
+
+
+    public int getArraySize(){
+<span class="fc" id="L23">        return this.rate.length;</span>
+    }
+    public void increasePopularity(){
+<span class="fc" id="L26">        this.popularity++;</span>
+<span class="fc" id="L27">    }</span>
+
+    public int getPopularity(){
+<span class="fc" id="L30">        return this.popularity;</span>
+    }
+
+<span class="fc" id="L33">    public void setPopularity(int amount){ this.popularity = amount;}</span>
+    public String[] getRate() {
+<span class="fc" id="L35">        return rate;</span>
+    }
+
+    public void setRates(String[] rates) {
+<span class="fc" id="L39">        this.rate = rates;</span>
+<span class="fc" id="L40">    }</span>
+
+    public HashMap&lt;Integer,Integer&gt; getMap(){
+<span class="fc" id="L43">        return this.varied;</span>
+    }
+    public void setRate(double rate,String target) {
+
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        for(int i = 0; i &lt; App.countryArray.length; i++){</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">            if(App.countryArray[i].equals(target)){</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">                if(Double.parseDouble(this.rate[i]) &gt; rate){</span>
+<span class="fc" id="L50">                    varied.replace(i,-1);</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">                }else if((Double.parseDouble(this.rate[i]) &lt; rate)){</span>
+<span class="fc" id="L52">                    varied.replace(i,1);</span>
+                }
+<span class="fc" id="L54">                this.rate[i] = String.valueOf(rate);</span>
+            }
+        }
+<span class="fc" id="L57">    }</span>
+
+    public String getCountry() {
+<span class="fc" id="L60">        return country;</span>
+    }
+    public void setCountry(String country) {
+<span class="fc" id="L63">        this.country = country;</span>
+<span class="fc" id="L64">    }</span>
+    //get icon for each country
+    public ImageIcon getIcon() {
+<span class="fc" id="L67">        ImageIcon icon = new ImageIcon(&quot;src/images/&quot; + country + &quot;.png&quot;);</span>
+        //resize icon
+<span class="fc" id="L69">        Image img = icon.getImage();</span>
+<span class="fc" id="L70">        Image newImg = img.getScaledInstance(20, 20, Image.SCALE_SMOOTH);</span>
+<span class="fc" id="L71">        return new ImageIcon(newImg);</span>
+    }
+
+    public void reNewRate(String[] rate){
+<span class="fc" id="L75">        this.rate = rate;</span>
+<span class="fc" id="L76">    }</span>
+
+    public String toString() {
+<span class="fc" id="L79">        return country;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

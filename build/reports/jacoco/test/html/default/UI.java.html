@@ -1,0 +1,1202 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SOFT2412_Assignment1</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">UI.java</span></div><h1>UI.java</h1><pre class="source lang-java linenums">import javax.swing.*;
+import java.awt.*;
+import java.util.*;
+import java.util.List;
+
+
+<span class="nc" id="L7">class UI {</span>
+
+    public static void startWindow(Admin admin,NormalUser user) {
+<span class="fc" id="L10">        beautiful_ui();</span>
+
+
+<span class="fc" id="L13">        JFrame frame = new JFrame(&quot;Currency Converter&quot;);</span>
+<span class="fc" id="L14">        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="fc" id="L15">        frame.setSize(500, 300);</span>
+<span class="fc" id="L16">        frame.setLocationRelativeTo(null);</span>
+<span class="fc" id="L17">        frame.setLayout(null);</span>
+
+<span class="fc" id="L19">        addImage(frame,admin,user);</span>
+
+<span class="fc" id="L21">        JLabel label = new JLabel(&quot;Currency Converter&quot;);</span>
+<span class="fc" id="L22">        label.setBounds(150, 70, 200, 30);</span>
+<span class="fc" id="L23">        label.setFont(new Font(&quot;Arial&quot;, Font.BOLD, 20));</span>
+<span class="fc" id="L24">        frame.add(label);</span>
+
+<span class="fc" id="L26">        JButton button = new JButton(&quot;Start Conversion&quot;);</span>
+<span class="fc" id="L27">        mouseOnButton(button);</span>
+<span class="fc" id="L28">        button.setBounds(150, 150, 200, 50);</span>
+<span class="fc" id="L29">        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+
+
+
+
+<span class="fc" id="L34">        frame.add(button);</span>
+<span class="fc" id="L35">        button.addActionListener(e -&gt; {</span>
+<span class="nc" id="L36">            frame.dispose();</span>
+<span class="nc" id="L37">            displayWindow(admin,user);</span>
+<span class="nc" id="L38">        });</span>
+<span class="fc" id="L39">        exit_button(frame);</span>
+
+<span class="fc" id="L41">        frame.setVisible(true);</span>
+
+<span class="fc" id="L43">    }</span>
+
+
+
+    public static void exit_button(JFrame frame){
+<span class="fc" id="L48">        JButton exit = new JButton(&quot;Exit&quot;);</span>
+<span class="fc" id="L49">        exit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L50">        mouseOnButton(exit);</span>
+<span class="fc" id="L51">        exit.setBounds(400, 10, 80, 30);</span>
+<span class="fc" id="L52">        frame.add(exit);</span>
+<span class="pc" id="L53">        exit.addActionListener(e -&gt; System.exit(0));</span>
+<span class="fc" id="L54">    }</span>
+
+    public static void addImage(JFrame frame, Admin admin, NormalUser user) {
+<span class="fc" id="L57">        ImageIcon icon = new ImageIcon(&quot;src/images/ICON.png&quot;);</span>
+
+
+<span class="fc" id="L60">        JLabel image = new JLabel(icon);</span>
+<span class="fc" id="L61">        image.resize(80, 80);</span>
+<span class="fc" id="L62">        image.setLocation(0, 0);</span>
+        // 鼠标在图片上变成手指
+<span class="fc" id="L64">        image.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+        // add hyperlink to image
+<span class="fc" id="L66">        image.addMouseListener(new java.awt.event.MouseAdapter() {</span>
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+<span class="nc" id="L68">                startWindow(admin, user);</span>
+<span class="nc" id="L69">            }</span>
+        });
+<span class="fc" id="L71">        frame.add(image);</span>
+<span class="fc" id="L72">    }</span>
+
+    // begin window
+    public static void displayWindow(Admin admin_user,NormalUser normal_User) {
+<span class="fc" id="L76">        beautiful_ui();</span>
+<span class="fc" id="L77">        JFrame frame = new JFrame(&quot;Rate Calculator&quot;);</span>
+<span class="fc" id="L78">        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="fc" id="L79">        frame.setSize(500, 300);</span>
+<span class="fc" id="L80">        frame.setLocationRelativeTo(null);</span>
+<span class="fc" id="L81">        frame.setLayout(null);</span>
+
+<span class="fc" id="L83">        JButton admin = new JButton(&quot;Admin&quot;);</span>
+<span class="fc" id="L84">        admin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L85">        mouseOnButton(admin);</span>
+<span class="fc" id="L86">        JButton user = new JButton(&quot;User&quot;);</span>
+<span class="fc" id="L87">        user.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L88">        mouseOnButton(user);</span>
+<span class="fc" id="L89">        admin.setBounds(100, 140, 100, 50);</span>
+<span class="fc" id="L90">        user.setBounds(300, 140, 100, 50);</span>
+<span class="fc" id="L91">        frame.add(admin);</span>
+<span class="fc" id="L92">        frame.add(user);</span>
+
+<span class="fc" id="L94">        JLabel label = new JLabel(&quot;Please choose whether you are admin or normal user&quot;);</span>
+<span class="fc" id="L95">        label.setFont(new Font(&quot;Arial&quot;, Font.BOLD, 15));</span>
+<span class="fc" id="L96">        label.setBounds(80, 90, 400, 30);</span>
+<span class="fc" id="L97">        frame.add(label);</span>
+
+<span class="fc" id="L99">        addImage(frame,admin_user,normal_User);</span>
+
+<span class="fc" id="L101">        frame.setVisible(true);</span>
+<span class="fc" id="L102">        admin.addActionListener(e -&gt; {</span>
+<span class="nc" id="L103">            App.admin1 = true;</span>
+<span class="nc" id="L104">            frame.dispose();</span>
+<span class="nc" id="L105">            admin_login_frame(admin_user,normal_User);</span>
+<span class="nc" id="L106">        });</span>
+
+<span class="fc" id="L108">        user.addActionListener(e -&gt; {</span>
+<span class="nc" id="L109">            App.normalUser1 = true;</span>
+
+<span class="nc" id="L111">            normal_frame(admin_user,normal_User);</span>
+<span class="nc" id="L112">            frame.dispose();</span>
+
+<span class="nc" id="L114">        });</span>
+<span class="fc" id="L115">        exit_button(frame);</span>
+
+<span class="fc" id="L117">    }</span>
+
+    // admins' window
+    public static void admin_frame(Admin admin_user,NormalUser normal_User) {
+<span class="fc" id="L121">        JFrame admin_frame = new JFrame(&quot;Admin&quot;);</span>
+<span class="fc" id="L122">        admin_frame.setSize(500, 300);</span>
+<span class="fc" id="L123">        admin_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="fc" id="L124">        admin_frame.setLocationRelativeTo(null);</span>
+<span class="fc" id="L125">        admin_frame.setLayout(null);</span>
+
+<span class="fc" id="L127">        addImage(admin_frame,admin_user,normal_User);</span>
+<span class="fc" id="L128">        exit_button(admin_frame);</span>
+
+        // add a label to show the Frame name
+<span class="fc" id="L131">        JLabel label = new JLabel(&quot;Admin&quot;);</span>
+<span class="fc" id="L132">        label.setBounds(200, 10, 100, 30);</span>
+<span class="fc" id="L133">        label.setFont(new Font(&quot;Arial&quot;, Font.BOLD, 20));</span>
+<span class="fc" id="L134">        admin_frame.add(label);</span>
+
+<span class="fc" id="L136">        JButton checkRate = new JButton(&quot;checkRate&quot;);</span>
+<span class="fc" id="L137">        checkRate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L138">        mouseOnButton(checkRate);</span>
+<span class="fc" id="L139">        checkRate.setBounds(50, 80, 100, 40);</span>
+<span class="fc" id="L140">        admin_frame.add(checkRate);</span>
+
+<span class="fc" id="L142">        JButton setRate = new JButton(&quot;setRate&quot;);</span>
+<span class="fc" id="L143">        setRate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L144">        mouseOnButton(setRate);</span>
+<span class="fc" id="L145">        setRate.setBounds(200, 80, 100, 40);</span>
+<span class="fc" id="L146">        admin_frame.add(setRate);</span>
+
+        // addRate button
+<span class="fc" id="L149">        JButton addRate = new JButton(&quot;addRate&quot;);</span>
+<span class="fc" id="L150">        addRate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L151">        mouseOnButton(addRate);</span>
+<span class="fc" id="L152">        addRate.setBounds(50, 130, 100, 40);</span>
+<span class="fc" id="L153">        admin_frame.add(addRate);</span>
+
+        // deleteRate button
+<span class="fc" id="L156">        JButton deleteRate = new JButton(&quot;deleteRate&quot;);</span>
+<span class="fc" id="L157">        deleteRate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L158">        mouseOnButton(deleteRate);</span>
+<span class="fc" id="L159">        deleteRate.setBounds(200, 130, 100, 40);</span>
+<span class="fc" id="L160">        admin_frame.add(deleteRate);</span>
+
+
+        // backward button
+<span class="fc" id="L164">        JButton back = new JButton(&quot;back&quot;);</span>
+<span class="fc" id="L165">        back.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L166">        mouseOnButton(back);</span>
+<span class="fc" id="L167">        back.setBounds(200, 200, 100, 40);</span>
+<span class="fc" id="L168">        admin_frame.add(back);</span>
+
+        // history button
+<span class="fc" id="L171">        JButton checkHistory = new JButton(&quot;History&quot;);</span>
+<span class="fc" id="L172">        checkHistory.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L173">        mouseOnButton(checkHistory);</span>
+<span class="fc" id="L174">        checkHistory.setBounds(350, 80, 100, 40);</span>
+<span class="fc" id="L175">        admin_frame.add(checkHistory);</span>
+
+        // set popularity button
+<span class="fc" id="L178">        JButton setPopularity = new JButton(&quot;Popularity&quot;);</span>
+<span class="fc" id="L179">        setPopularity.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L180">        mouseOnButton(setPopularity);</span>
+<span class="fc" id="L181">        setPopularity.setBounds(350, 130, 100, 40);</span>
+<span class="fc" id="L182">        admin_frame.add(setPopularity);</span>
+
+
+        // when press checkRate button, show the rate
+<span class="pc" id="L186">        checkRate.addActionListener(e -&gt; rateTable( admin_user.rateList));</span>
+<span class="fc" id="L187">        deleteRate.addActionListener(e -&gt; {</span>
+<span class="nc" id="L188">            admin_frame.dispose();</span>
+<span class="nc" id="L189">            deleteRate(admin_frame,admin_user,normal_User);</span>
+<span class="nc" id="L190">        });</span>
+
+
+<span class="fc" id="L193">        addRate.addActionListener(e -&gt; {</span>
+<span class="nc" id="L194">            admin_frame.dispose();</span>
+<span class="nc" id="L195">            addRate(admin_frame, admin_user, normal_User);</span>
+<span class="nc" id="L196">        });</span>
+
+<span class="fc" id="L198">        back.addActionListener(e -&gt; {</span>
+
+<span class="nc" id="L200">            displayWindow(admin_user,normal_User);</span>
+<span class="nc" id="L201">            admin_frame.dispose();</span>
+<span class="nc" id="L202">        });</span>
+
+<span class="fc" id="L204">        setRate.addActionListener(e -&gt; {</span>
+<span class="nc" id="L205">            admin_frame.dispose();</span>
+<span class="nc" id="L206">            setRate(admin_frame, admin_user,normal_User);</span>
+<span class="nc" id="L207">        });</span>
+
+<span class="fc" id="L209">        checkHistory.addActionListener(e -&gt;{</span>
+<span class="nc" id="L210">            HistoryFrame(admin_frame, new History(&quot;src/main/java/history&quot;),admin_user,normal_User);</span>
+<span class="nc" id="L211">        });</span>
+
+<span class="fc" id="L213">        setPopularity.addActionListener(e -&gt;{</span>
+<span class="nc" id="L214">            admin_frame.dispose();</span>
+<span class="nc" id="L215">            setPopularity(admin_frame,admin_user,normal_User);</span>
+<span class="nc" id="L216">        });</span>
+
+
+<span class="fc" id="L219">        admin_frame.setVisible(true);</span>
+<span class="fc" id="L220">    }</span>
+
+    public static void setPopularity(JFrame frame, Admin admin_user, NormalUser normal_User){
+<span class="fc" id="L223">        JFrame setPopularity = new JFrame(&quot;Set Popularity&quot;);</span>
+<span class="fc" id="L224">        setPopularity.setSize(500, 300);</span>
+<span class="fc" id="L225">        setPopularity.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="fc" id="L226">        setPopularity.setLocationRelativeTo(null);</span>
+<span class="fc" id="L227">        setPopularity.setLayout(null);</span>
+<span class="fc" id="L228">        admin_user.resetPopularity();</span>
+<span class="fc" id="L229">        addImage(setPopularity,admin_user,normal_User);</span>
+<span class="fc" id="L230">        exit_button(setPopularity);</span>
+
+<span class="fc" id="L232">        JLabel label = new JLabel(&quot;Set Popularity&quot;);</span>
+<span class="fc" id="L233">        label.setBounds(200, 50, 100, 30);</span>
+<span class="fc" id="L234">        setPopularity.add(label);</span>
+
+<span class="fc" id="L236">        JComboBox comboBox1 = new JComboBox&lt;&gt;(admin_user.rateList.toArray());</span>
+<span class="fc" id="L237">        comboBox1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L238">        comboBox1.setBounds(40, 100, 100, 30);</span>
+<span class="fc" id="L239">        add_icon(comboBox1);</span>
+<span class="fc" id="L240">        setPopularity.add(comboBox1);</span>
+
+<span class="fc" id="L242">        JComboBox comboBox2 = new JComboBox&lt;&gt;(admin_user.rateList.toArray());</span>
+<span class="fc" id="L243">        comboBox2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L244">        comboBox2.setBounds(140, 100, 100, 30);</span>
+<span class="fc" id="L245">        add_icon(comboBox2);</span>
+<span class="fc" id="L246">        setPopularity.add(comboBox2);</span>
+
+<span class="fc" id="L248">        JComboBox comboBox3 = new JComboBox&lt;&gt;(admin_user.rateList.toArray());</span>
+<span class="fc" id="L249">        comboBox3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L250">        comboBox3.setBounds(240, 100, 100, 30);</span>
+<span class="fc" id="L251">        add_icon(comboBox3);</span>
+<span class="fc" id="L252">        setPopularity.add(comboBox3);</span>
+
+<span class="fc" id="L254">        JComboBox comboBox4 = new JComboBox&lt;&gt;(admin_user.rateList.toArray());</span>
+<span class="fc" id="L255">        comboBox4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L256">        comboBox4.setBounds(340, 100, 100, 30);</span>
+<span class="fc" id="L257">        add_icon(comboBox4);</span>
+<span class="fc" id="L258">        setPopularity.add(comboBox4);</span>
+
+<span class="fc" id="L260">        JButton confirm = new JButton(&quot;confirm&quot;);</span>
+<span class="fc" id="L261">        confirm.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L262">        mouseOnButton(confirm);</span>
+<span class="fc" id="L263">        confirm.setBounds(200, 150, 100, 40);</span>
+<span class="fc" id="L264">        setPopularity.add(confirm);</span>
+
+
+<span class="fc" id="L267">        confirm.addActionListener(e1 -&gt; {</span>
+<span class="nc" id="L268">            int success = 0;</span>
+<span class="nc" id="L269">            ArrayList&lt;JComboBox&gt; comboLs = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L270">            comboLs.add(comboBox1);</span>
+<span class="nc" id="L271">            comboLs.add(comboBox2);</span>
+<span class="nc" id="L272">            comboLs.add(comboBox3);</span>
+<span class="nc" id="L273">            comboLs.add(comboBox4);</span>
+<span class="nc" id="L274">            ArrayList&lt;String&gt; check_same = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L275" title="All 2 branches missed.">            for (int i = 0; i &lt; 4; i++) {</span>
+<span class="nc bnc" id="L276" title="All 2 branches missed.">                if (check_same.contains(Objects.requireNonNull(comboLs.get(i).getSelectedItem()).toString())) {</span>
+<span class="nc" id="L277">                    JOptionPane.showMessageDialog(null, &quot;Can not choose the same country!&quot;);</span>
+<span class="nc" id="L278">                    break;</span>
+                }
+<span class="nc bnc" id="L280" title="All 2 branches missed.">                if(i == 3)</span>
+<span class="nc" id="L281">                    success = 1;</span>
+<span class="nc" id="L282">                check_same.add(Objects.requireNonNull(comboBox1.getSelectedItem()).toString());</span>
+
+            }
+<span class="nc bnc" id="L285" title="All 2 branches missed.">            if(success == 1) {</span>
+<span class="nc" id="L286">                JOptionPane.showMessageDialog(null, &quot;Setup Successfully!&quot;);</span>
+<span class="nc" id="L287">                ArrayList&lt;Rate&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L288" title="All 2 branches missed.">                for(int i = 0; i &lt; comboLs.size(); i++) {</span>
+<span class="nc bnc" id="L289" title="All 2 branches missed.">                    for(Rate each: admin_user.rateList){</span>
+<span class="nc bnc" id="L290" title="All 2 branches missed.">                        if(each.getCountry().equals(Objects.requireNonNull(comboLs.get(i).getSelectedItem()).toString())){</span>
+<span class="nc" id="L291">                            result.add(each);</span>
+                        }
+<span class="nc" id="L293">                    }</span>
+                }
+<span class="nc" id="L295">                admin_user.setPopular(result);</span>
+<span class="nc" id="L296">                setPopularity.dispose();</span>
+<span class="nc" id="L297">                admin_frame(admin_user,normal_User);</span>
+
+            }
+<span class="nc" id="L300">        });</span>
+
+
+//        //add a button to confirm the amount
+//        JButton confirm3 = new JButton(&quot;confirm&quot;);
+//        confirm3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+//        mouseOnButton(confirm3);
+//        confirm3.setBounds(250, 150, 80, 30);
+//        jFrame.add(confirm3);
+//        //create a variable to store the amount
+//
+//        confirm3.addActionListener(e1 -&gt;{
+//            String newName = textField.getText();
+//            System.out.println(newName);
+//
+//            ArrayList&lt;Double&gt; arr = new ArrayList&lt;&gt;();
+//            for(int i = 0; i &lt; admin.rateList.size(); i++){
+//                jFrame.dispose();
+//                getEachNewRate(jFrame,admin,normalUser,i,newName,arr);
+//            }
+//        });
+//        admin_frame(admin,normalUser);
+//        jFrame.setVisible(true);
+
+<span class="fc" id="L324">        JButton back = new JButton(&quot;back&quot;);</span>
+<span class="fc" id="L325">        back.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L326">        mouseOnButton(back);</span>
+<span class="fc" id="L327">        back.setBounds(200, 200, 100, 40);</span>
+<span class="fc" id="L328">        setPopularity.add(back);</span>
+
+<span class="fc" id="L330">        back.addActionListener(e -&gt; {</span>
+<span class="nc" id="L331">            admin_frame(admin_user,normal_User);</span>
+<span class="nc" id="L332">            setPopularity.dispose();</span>
+<span class="nc" id="L333">        });</span>
+
+
+
+<span class="fc" id="L337">        setPopularity.setVisible(true);</span>
+<span class="fc" id="L338">    }</span>
+
+    public static void HistoryFrame(JFrame frame, History history,Admin admin,NormalUser normalUser) {
+<span class="fc" id="L341">        frame.getContentPane().removeAll();</span>
+<span class="fc" id="L342">        frame.repaint();</span>
+<span class="fc" id="L343">        frame.setLayout(null);</span>
+<span class="fc" id="L344">        exit_button(frame);</span>
+
+
+<span class="fc" id="L347">        JTextArea textArea = new JTextArea(history.readFile());</span>
+
+
+<span class="fc" id="L350">        String[] hist1 = history.readFile().split(&quot;\n&quot;);</span>
+<span class="fc" id="L351">        int counterq = 0;</span>
+<span class="fc" id="L352">        ArrayList&lt;String&gt; history_list = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L353" title="All 2 branches covered.">        for(String each: hist1){</span>
+<span class="fc" id="L354">            String[] temp1 = each.split(&quot; &quot;);</span>
+<span class="fc" id="L355">            ArrayList&lt;String&gt; t1 = new ArrayList&lt;&gt;();</span>
+<span class="pc bpc" id="L356" title="1 of 2 branches missed.">            if(t1.size() == 1){</span>
+<span class="nc" id="L357">                counterq++;</span>
+<span class="nc" id="L358">                continue;</span>
+            }else{
+<span class="fc" id="L360">                history_list.add(List.of(temp1).toString());</span>
+            }
+        }
+
+
+
+<span class="fc" id="L366">        ArrayList&lt;String&gt; final_list = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L367" title="All 2 branches covered.">        for(int i = 1; i &lt; history_list.size();i ++){</span>
+<span class="fc" id="L368">            String line = history_list.get(i);</span>
+<span class="fc" id="L369">            String temp = line.substring(0, line.length() - 1);</span>
+<span class="fc" id="L370">            String[] temp1 = temp.split(&quot; &quot;);</span>
+<span class="fc" id="L371">            String string = temp1[8];</span>
+
+<span class="fc bfc" id="L373" title="All 2 branches covered.">            if(!final_list.contains(string)){</span>
+                // add the 8th element of temp
+<span class="fc" id="L375">                final_list.add(string);</span>
+            }
+
+
+        }
+
+        // add the final_list to the combobox
+<span class="fc" id="L382">        JComboBox&lt;String&gt; time_from = new JComboBox&lt;&gt;();</span>
+<span class="fc" id="L383">        time_from.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+
+
+<span class="fc bfc" id="L386" title="All 2 branches covered.">        for(String each: final_list){</span>
+<span class="fc" id="L387">            time_from.addItem(each);</span>
+<span class="fc" id="L388">        }</span>
+<span class="fc" id="L389">        time_from.setBounds(120, 80, 100, 30);</span>
+<span class="fc" id="L390">        frame.add(time_from);</span>
+
+<span class="fc" id="L392">        JComboBox&lt;String&gt; time_to = new JComboBox&lt;&gt;();</span>
+<span class="fc" id="L393">        time_to.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc bfc" id="L394" title="All 2 branches covered.">        for(String each: final_list){</span>
+<span class="fc" id="L395">            time_to.addItem(each);</span>
+<span class="fc" id="L396">        }</span>
+
+<span class="fc" id="L398">        time_to.setBounds(120, 140, 100, 30);</span>
+<span class="fc" id="L399">        frame.add(time_to);</span>
+
+
+<span class="fc" id="L402">        JLabel label1 = new JLabel(&quot;What currency do you have?&quot;);</span>
+<span class="fc" id="L403">        label1.setBounds(50, 50, 200, 30);</span>
+<span class="fc" id="L404">        frame.add(label1);</span>
+
+<span class="fc" id="L406">        JLabel label2 = new JLabel(&quot;Time from :&quot;);</span>
+<span class="fc" id="L407">        label2.setBounds(50, 80, 200, 30);</span>
+<span class="fc" id="L408">        frame.add(label2);</span>
+
+<span class="fc" id="L410">        JLabel label5 = new JLabel(&quot;Time to :&quot;);</span>
+<span class="fc" id="L411">        label5.setBounds(50, 140, 200, 30);</span>
+<span class="fc" id="L412">        frame.add(label5);</span>
+
+<span class="fc" id="L414">        JLabel label3 = new JLabel(&quot;From&quot;);</span>
+<span class="fc" id="L415">        label3.setBounds(260, 80, 200, 30);</span>
+<span class="fc" id="L416">        frame.add(label3);</span>
+
+<span class="fc" id="L418">        JComboBox comboBox1 = new JComboBox&lt;&gt;(admin.rateList.toArray());</span>
+<span class="fc" id="L419">        comboBox1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L420">        comboBox1.setBounds(300, 80, 100, 30);</span>
+<span class="fc" id="L421">        add_icon(comboBox1);</span>
+<span class="fc" id="L422">        frame.add(comboBox1);</span>
+
+<span class="fc" id="L424">        JComboBox comboBox2 = new JComboBox&lt;&gt;(admin.rateList.toArray());</span>
+<span class="fc" id="L425">        comboBox2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L426">        comboBox2.setBounds(300, 140, 100, 30);</span>
+<span class="fc" id="L427">        add_icon(comboBox2);</span>
+<span class="fc" id="L428">        frame.add(comboBox2);</span>
+
+<span class="fc" id="L430">        JLabel label4 = new JLabel(&quot;To&quot;);</span>
+<span class="fc" id="L431">        label4.setBounds(260, 140, 200, 30);</span>
+<span class="fc" id="L432">        frame.add(label4);</span>
+
+
+
+
+
+
+
+        //add a button to confirm the amount
+<span class="fc" id="L441">        JButton confirm3 = new JButton(&quot;confirm&quot;);</span>
+<span class="fc" id="L442">        confirm3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L443">        mouseOnButton(confirm3);</span>
+<span class="fc" id="L444">        confirm3.setBounds(200, 200, 100, 40);</span>
+<span class="fc" id="L445">        frame.add(confirm3);</span>
+
+        //create a variable to store the amount
+<span class="fc" id="L448">        confirm3.addActionListener(e1 -&gt; {</span>
+<span class="nc" id="L449">            String timeFrom = ((String) time_from.getSelectedItem()).split(&quot;/&quot;)[0];</span>
+<span class="nc" id="L450">            String timeTo = (time_to.getSelectedItem().toString()).split(&quot;/&quot;)[0];</span>
+
+<span class="nc" id="L452">            ArrayList&lt;String&gt; time = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L453">            ArrayList&lt;String&gt; from = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L454">            ArrayList&lt;String&gt; to = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L455">            ArrayList&lt;Integer&gt; indexes = new ArrayList&lt;&gt;();</span>
+//            double[] rates = new double[500];
+<span class="nc" id="L457">            ArrayList&lt;Double&gt; rates = new ArrayList&lt;&gt;();</span>
+//        JLabel label = new JLabel(history.readFile());
+<span class="nc" id="L459">            String[] hist = history.readFile().split(&quot;\n&quot;);</span>
+<span class="nc" id="L460">            int counter = 0;</span>
+<span class="nc" id="L461">            int counter2 = 0;</span>
+<span class="nc bnc" id="L462" title="All 2 branches missed.">            for(String each: hist){</span>
+<span class="nc" id="L463">                String[] temp = each.split(&quot; &quot;);</span>
+<span class="nc" id="L464">                ArrayList&lt;String&gt; t = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L466">                t.addAll(List.of(temp));</span>
+<span class="nc bnc" id="L467" title="All 2 branches missed.">                if(t.size() == 1){</span>
+<span class="nc" id="L468">                    counter++;</span>
+<span class="nc" id="L469">                    continue;</span>
+                }
+
+<span class="nc bnc" id="L472" title="All 2 branches missed.">                for(int i =Integer.parseInt( timeFrom); i &lt;= Integer.parseInt( timeTo); i ++) {</span>
+<span class="nc bnc" id="L473" title="All 6 branches missed.">                    if ((((t.get(8).split(&quot;/&quot;)[0])).equals(String.valueOf(i)) )&amp;&amp; t.get(4).equals(Objects.requireNonNull(comboBox1.getSelectedItem()).toString()) &amp;&amp; t.get(6).equals(Objects.requireNonNull(comboBox2.getSelectedItem()).toString())) {</span>
+
+<span class="nc" id="L475">                        time.add(t.get(8));</span>
+<span class="nc" id="L476">                        from.add(t.get(4));</span>
+<span class="nc" id="L477">                        to.add(t.get(6));</span>
+<span class="nc" id="L478">                        indexes.add(counter);</span>
+<span class="nc" id="L479">                        rates.add(Double.parseDouble(t.get(2)));</span>
+<span class="nc" id="L480">                        counter2++;</span>
+                    }
+                }
+<span class="nc" id="L483">                counter++;</span>
+
+            }
+<span class="nc" id="L486">            StringBuilder sb = new StringBuilder();</span>
+<span class="nc bnc" id="L487" title="All 2 branches missed.">            for (Integer index : indexes) {</span>
+<span class="nc" id="L488">                sb.append(hist[index]);</span>
+<span class="nc" id="L489">                sb.append('\n');</span>
+<span class="nc" id="L490">            }</span>
+
+            //clear the frame
+<span class="nc" id="L493">            frame.getContentPane().removeAll();</span>
+<span class="nc" id="L494">            frame.repaint();</span>
+
+<span class="nc" id="L496">            JTextArea textArea2 = new JTextArea(String.valueOf(sb));</span>
+<span class="nc" id="L497">            JScrollPane scrollPane = new JScrollPane(textArea2);</span>
+<span class="nc" id="L498">            scrollPane.setBounds(0,0,500,180);</span>
+<span class="nc" id="L499">            frame.add(scrollPane);</span>
+
+<span class="nc" id="L501">            JLabel std = new JLabel(&quot;std is: &quot; + calculateSD(rates));</span>
+<span class="nc" id="L502">            std.setBounds(20, 200, 100, 30);</span>
+<span class="nc" id="L503">            frame.add(std);</span>
+            // calculate the average and round it to 2 decimal places
+
+<span class="nc" id="L506">            JLabel mean = new JLabel(&quot;mean is: &quot; +Math.round(((mean(rates))) * 100.0) / 100.0 );</span>
+<span class="nc" id="L507">            mean.setBounds(120, 200, 100, 30);</span>
+<span class="nc" id="L508">            frame.add(mean);</span>
+
+<span class="nc" id="L510">            JLabel median = new JLabel(&quot;median is: &quot; + median(rates));</span>
+<span class="nc" id="L511">            median.setBounds(220, 200, 100, 30);</span>
+<span class="nc" id="L512">            frame.add(median);</span>
+
+
+<span class="nc" id="L515">            JLabel max = new JLabel(&quot;max is: &quot; + maxIn(rates));</span>
+<span class="nc" id="L516">            max.setBounds(320, 200, 100, 30);</span>
+<span class="nc" id="L517">            frame.add(max);</span>
+
+<span class="nc" id="L519">            JLabel min = new JLabel(&quot;min is: &quot; + minIn(rates));</span>
+<span class="nc" id="L520">            min.setBounds(400, 200, 100, 30);</span>
+<span class="nc" id="L521">            frame.add(min);</span>
+
+<span class="nc" id="L523">            JButton back = new JButton(&quot;back&quot;);</span>
+<span class="nc" id="L524">            back.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="nc" id="L525">            mouseOnButton(back);</span>
+<span class="nc" id="L526">            back.setBounds(180, 240, 100, 30);</span>
+<span class="nc" id="L527">            frame.add(back);</span>
+<span class="nc" id="L528">            back.addActionListener(e -&gt; {</span>
+<span class="nc" id="L529">                admin_frame(admin,normalUser);</span>
+<span class="nc" id="L530">                frame.dispose();</span>
+<span class="nc" id="L531">            });</span>
+<span class="nc" id="L532">        });</span>
+
+        // add a back button above the scrollable area
+<span class="fc" id="L535">        JButton back = new JButton(&quot;back&quot;);</span>
+<span class="fc" id="L536">        back.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L537">        mouseOnButton(back);</span>
+<span class="fc" id="L538">        back.setBounds(50, 200, 80, 30);</span>
+<span class="fc" id="L539">        frame.add(back);</span>
+<span class="fc" id="L540">        back.addActionListener(e -&gt; {</span>
+<span class="nc" id="L541">            admin_frame(admin,normalUser);</span>
+<span class="nc" id="L542">            frame.dispose();</span>
+<span class="nc" id="L543">        });</span>
+<span class="fc" id="L544">    }</span>
+
+    public static double maxIn(ArrayList&lt;Double&gt; rates){
+<span class="fc" id="L547">        double max = -Double.MAX_VALUE;</span>
+<span class="fc bfc" id="L548" title="All 2 branches covered.">        for (double val : rates) {</span>
+<span class="fc" id="L549">            max = Math.max(max, val);</span>
+<span class="fc" id="L550">        }</span>
+<span class="fc" id="L551">        return max;</span>
+    }
+
+    public static double minIn(ArrayList&lt;Double&gt; array) {
+<span class="fc" id="L555">        double min = Double.MAX_VALUE;</span>
+        //create a max variable
+
+<span class="fc bfc" id="L558" title="All 2 branches covered.">        for (double val : array) {</span>
+<span class="pc bpc" id="L559" title="1 of 2 branches missed.">            if(val == 0){</span>
+<span class="nc" id="L560">                continue;</span>
+            }
+<span class="fc" id="L562">            min = Math.min(min, val);</span>
+<span class="fc" id="L563">        }</span>
+<span class="pc bpc" id="L564" title="1 of 2 branches missed.">        if( min == Double.MAX_VALUE){</span>
+<span class="nc" id="L565">            return 0;</span>
+        }
+<span class="fc" id="L567">        return min;</span>
+    }
+
+    public static double mean(ArrayList&lt;Double&gt; array) {
+<span class="fc" id="L571">        double sum = 0;</span>
+<span class="fc bfc" id="L572" title="All 2 branches covered.">        for (double v : array) {</span>
+<span class="fc" id="L573">            sum += v;</span>
+<span class="fc" id="L574">        }</span>
+<span class="fc" id="L575">        return sum / array.size();</span>
+    }
+
+    // the array double[] m MUST BE SORTED
+    public static double median(ArrayList&lt;Double&gt; m) {
+<span class="fc" id="L580">        int middle = m.size()/2;</span>
+<span class="fc bfc" id="L581" title="All 2 branches covered.">        if (m.size()%2 == 1) {</span>
+<span class="fc" id="L582">            return m.get(middle);</span>
+        } else {
+<span class="fc" id="L584">            return (m.get(middle - 1) + m.get(middle)) / 2.0;</span>
+        }
+
+    }
+
+    public static double calculateSD(ArrayList&lt;Double&gt; rates)
+    {
+<span class="fc" id="L591">        double sum = 0.0, standardDeviation = 0.0;</span>
+<span class="fc" id="L592">        int length = rates.size();</span>
+
+<span class="fc bfc" id="L594" title="All 2 branches covered.">        for(double num : rates) {</span>
+<span class="fc" id="L595">            sum += num;</span>
+<span class="fc" id="L596">        }</span>
+<span class="fc" id="L597">        double mean = sum/length;</span>
+<span class="fc bfc" id="L598" title="All 2 branches covered.">        for(double num: rates) {</span>
+<span class="fc" id="L599">            standardDeviation += Math.pow(num - mean, 2);</span>
+<span class="fc" id="L600">        }</span>
+        //round the result to 2 decimal places
+<span class="fc" id="L602">        return Math.round(Math.sqrt(standardDeviation/length) * 100.0) / 100.0;</span>
+//        return Math.sqrt(standardDeviation/length);
+    }
+
+    public static void normal_frame(Admin admin_user,NormalUser normal_user){
+<span class="fc" id="L607">        JFrame normal_frame = new JFrame(&quot;Normal&quot;);</span>
+<span class="fc" id="L608">        normal_frame.setSize(500, 300);</span>
+<span class="fc" id="L609">        normal_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="fc" id="L610">        normal_frame.setLocationRelativeTo(null);</span>
+<span class="fc" id="L611">        normal_frame.setLayout(null);</span>
+
+<span class="fc" id="L613">        addImage(normal_frame,admin_user,normal_user);</span>
+<span class="fc" id="L614">        exit_button(normal_frame);</span>
+
+<span class="fc" id="L616">        JButton checkRate = new JButton(&quot;checkRate&quot;);</span>
+<span class="fc" id="L617">        checkRate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L618">        mouseOnButton(checkRate);</span>
+<span class="fc" id="L619">        checkRate.setBounds(130, 100, 100, 40);</span>
+<span class="fc" id="L620">        normal_frame.add(checkRate);</span>
+
+<span class="fc" id="L622">        JButton exchange = new JButton(&quot;exchange&quot;);</span>
+<span class="fc" id="L623">        exchange.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L624">        mouseOnButton(exchange);</span>
+<span class="fc" id="L625">        exchange.setBounds(270, 100, 100, 40);</span>
+<span class="fc" id="L626">        normal_frame.add(exchange);</span>
+
+<span class="fc" id="L628">        JButton back = new JButton(&quot;back&quot;);</span>
+<span class="fc" id="L629">        back.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L630">        mouseOnButton(back);</span>
+<span class="fc" id="L631">        back.setBounds(200, 200, 60, 40);</span>
+
+<span class="fc" id="L633">        normal_frame.add(back);</span>
+
+<span class="fc" id="L635">        back.addActionListener(e -&gt; {</span>
+
+<span class="nc" id="L637">            displayWindow(admin_user,normal_user);</span>
+<span class="nc" id="L638">            normal_frame.dispose();</span>
+<span class="nc" id="L639">        });</span>
+
+<span class="fc" id="L641">        checkRate.addActionListener(e -&gt; {</span>
+<span class="nc" id="L642">            rateTable(normal_user.rateList);</span>
+<span class="nc" id="L643">        });</span>
+
+<span class="fc" id="L645">        exchange.addActionListener(e -&gt; {</span>
+
+<span class="nc" id="L647">            exchange(admin_user,normal_user);</span>
+<span class="nc" id="L648">            normal_frame.dispose();</span>
+<span class="nc" id="L649">        });</span>
+<span class="fc" id="L650">        normal_frame.setVisible(true);</span>
+<span class="fc" id="L651">    }</span>
+
+    public static ArrayList&lt;Rate&gt; getPopularCurrencies(List&lt;Rate&gt; rateList){
+<span class="fc" id="L654">        ArrayList&lt;Rate&gt; ls = new ArrayList&lt;&gt;(rateList);</span>
+<span class="fc" id="L655">        ArrayList&lt;Rate&gt; result = new ArrayList&lt;&gt;();</span>
+
+<span class="fc bfc" id="L657" title="All 2 branches covered.">        while(result.size() &lt; 4){</span>
+<span class="fc" id="L658">            Rate maxRate = ls.get(0);</span>
+<span class="fc bfc" id="L659" title="All 2 branches covered.">            for (Rate l : ls) {</span>
+<span class="pc bpc" id="L660" title="1 of 2 branches missed.">                if (maxRate.getPopularity() &lt; l.getPopularity()) {</span>
+<span class="nc" id="L661">                    maxRate = l;</span>
+                }
+<span class="fc" id="L663">            }</span>
+<span class="fc" id="L664">            result.add(maxRate);</span>
+<span class="fc" id="L665">            ls.remove(maxRate);</span>
+<span class="fc" id="L666">        }</span>
+<span class="fc" id="L667">        return result;</span>
+    }
+
+    public static void rateTable(List&lt;Rate&gt; rateList) {
+<span class="nc" id="L671">        JTable table = new JTable(5, 5);</span>
+<span class="nc" id="L672">        table.setBounds(30, 40, 200, 300);</span>
+
+<span class="nc" id="L674">        ArrayList&lt;Rate&gt; popularLs = getPopularCurrencies(rateList);</span>
+
+<span class="nc bnc" id="L676" title="All 2 branches missed.">        for(int i = 0; i &lt; popularLs.size() ; i++){</span>
+
+<span class="nc bnc" id="L678" title="All 2 branches missed.">            if (popularLs.get(i) != null) {</span>
+<span class="nc" id="L679">                table.setValueAt(popularLs.get(i).getCountry(), i+1, 0);</span>
+            }
+        }
+
+<span class="nc bnc" id="L683" title="All 2 branches missed.">        for(int i = 0; i &lt; popularLs.size(); i++) {</span>
+<span class="nc bnc" id="L684" title="All 2 branches missed.">            if (popularLs.get(i) != null) {</span>
+<span class="nc" id="L685">                table.setValueAt(popularLs.get(i).getCountry(), 0, i+1);</span>
+            }
+        }
+<span class="nc bnc" id="L688" title="All 2 branches missed.">        for(int i = 1; i &lt; popularLs.size() + 1; i++){</span>
+<span class="nc bnc" id="L689" title="All 2 branches missed.">            for(int j = 1; j &lt; popularLs.size() + 1; j++){</span>
+<span class="nc" id="L690">                String value = popularLs.get(i - 1).getRate()[rateList.indexOf(popularLs.get(j - 1))];</span>
+<span class="nc bnc" id="L691" title="All 2 branches missed.">                if(popularLs.get(i - 1).getMap().get(rateList.indexOf(popularLs.get(j - 1))) != 0){</span>
+<span class="nc bnc" id="L692" title="All 2 branches missed.">                    if(popularLs.get(i - 1).getMap().get(rateList.indexOf(popularLs.get(j - 1))) == 1){</span>
+<span class="nc" id="L693">                        String increased = value + &quot;(I)&quot;;</span>
+<span class="nc" id="L694">                        increased = &quot;&lt;html&gt;&lt;font color='red'&gt;&quot; + increased + &quot;&lt;/font&gt;&lt;/html&gt;&quot;;</span>
+<span class="nc" id="L695">                        table.setValueAt(increased, i, j);</span>
+<span class="nc" id="L696">                    }else{</span>
+<span class="nc" id="L697">                        String decreased = value + &quot;(D)&quot;;</span>
+<span class="nc" id="L698">                        decreased = &quot;&lt;html&gt;&lt;font color='green'&gt;&quot; + decreased + &quot;&lt;/font&gt;&lt;/html&gt;&quot;;</span>
+<span class="nc" id="L699">                        table.setValueAt(decreased, i, j);</span>
+<span class="nc" id="L700">                    }</span>
+                }else{
+<span class="nc" id="L702">                    table.setValueAt(value, i, j);</span>
+                }
+            }
+        }
+        //set the image of JOptionPane
+<span class="nc" id="L707">        ImageIcon icon = new ImageIcon(&quot;src/images/ICON.png&quot;);</span>
+
+<span class="nc" id="L709">        JOptionPane.showMessageDialog(null, table, &quot;Rate Table&quot;, JOptionPane.INFORMATION_MESSAGE, icon);</span>
+<span class="nc" id="L710">    }</span>
+
+
+    public static void add_icon(JComboBox&lt;Object&gt; comboBox){
+<span class="fc" id="L714">        comboBox.setRenderer(new DefaultListCellRenderer(){</span>
+            @Override
+            public Component getListCellRendererComponent(JList&lt;?&gt; list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+<span class="fc" id="L717">                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);</span>
+<span class="pc bpc" id="L718" title="1 of 2 branches missed.">                if (value instanceof Rate) {</span>
+<span class="fc" id="L719">                    Rate rate = (Rate) value;</span>
+<span class="fc" id="L720">                    setText(rate.getCountry());</span>
+<span class="fc" id="L721">                    setIcon(rate.getIcon());</span>
+                }
+<span class="fc" id="L723">                return this;</span>
+            }
+        });
+<span class="fc" id="L726">    }</span>
+
+    //allow normal user to exchange money
+    public static void exchange(Admin adminUser, NormalUser user){
+<span class="fc" id="L730">        JFrame exchange_frame = new JFrame(&quot;Exchange&quot;);</span>
+<span class="fc" id="L731">        exchange_frame.setSize(500, 300);</span>
+<span class="fc" id="L732">        exchange_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="fc" id="L733">        exchange_frame.setLocationRelativeTo(null);</span>
+<span class="fc" id="L734">        exit_button(exchange_frame);</span>
+
+<span class="fc" id="L736">        exchange_frame.setLayout(null);</span>
+<span class="fc" id="L737">        exchange_frame.setTitle(&quot;Exchange money&quot;);</span>
+<span class="fc" id="L738">        JLabel label1 = new JLabel(&quot;What currency do you have?&quot;);</span>
+<span class="fc" id="L739">        label1.setBounds(50, 20, 200, 30);</span>
+<span class="fc" id="L740">        exchange_frame.add(label1);</span>
+
+<span class="fc" id="L742">        List&lt;Rate&gt; rateList = user.rateList;</span>
+
+<span class="fc" id="L744">        JComboBox&lt;Object&gt; comboBox1 = new JComboBox&lt;&gt;(rateList.toArray());</span>
+<span class="fc" id="L745">        comboBox1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+
+<span class="fc" id="L747">        comboBox1.setBounds(250, 50, 100, 30);</span>
+
+<span class="fc" id="L749">        add_icon(comboBox1);</span>
+
+<span class="fc" id="L751">        exchange_frame.add(comboBox1);</span>
+
+
+<span class="fc" id="L754">        JLabel label2 = new JLabel(&quot;What currency do you want?&quot;);</span>
+<span class="fc" id="L755">        label2.setBounds(50, 100, 200, 30);</span>
+<span class="fc" id="L756">        exchange_frame.add(label2);</span>
+        // add a drop-down list contains all the currency
+<span class="fc" id="L758">        JComboBox&lt;Object&gt; comboBox2 = new JComboBox&lt;&gt;(rateList.toArray());</span>
+<span class="fc" id="L759">        comboBox2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L760">        comboBox2.setBounds(250, 100, 100, 30);</span>
+<span class="fc" id="L761">        exchange_frame.add(comboBox2);</span>
+
+<span class="fc" id="L763">        add_icon(comboBox2);</span>
+
+        // add a button to confirm the currency
+<span class="fc" id="L766">        JButton confirm2 = new JButton(&quot;confirm&quot;);</span>
+<span class="fc" id="L767">        confirm2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L768">        mouseOnButton(confirm2);</span>
+<span class="fc" id="L769">        confirm2.setBounds(400, 100, 80, 30);</span>
+<span class="fc" id="L770">        exchange_frame.add(confirm2);</span>
+        //create a variable to store the currency
+<span class="fc" id="L772">        confirm2.addActionListener(e -&gt; {</span>
+<span class="nc" id="L773">            String currency1 = Objects.requireNonNull(comboBox1.getSelectedItem()).toString();</span>
+<span class="nc" id="L774">            String currency2 = Objects.requireNonNull(comboBox2.getSelectedItem()).toString();</span>
+<span class="nc bnc" id="L775" title="All 2 branches missed.">            if(currency1.equals(currency2)) {</span>
+<span class="nc" id="L776">                JOptionPane.showMessageDialog(null, &quot;You have choose the same currency!&quot;);</span>
+<span class="nc" id="L777">                exchange_frame.dispose();</span>
+<span class="nc" id="L778">                exchange(adminUser, user);</span>
+            }
+            //clear the frame
+<span class="nc" id="L781">            exchange_frame.getContentPane().removeAll();</span>
+<span class="nc" id="L782">            exchange_frame.repaint();</span>
+            //add a label to show the currency
+<span class="nc" id="L784">            JLabel label3 = new JLabel(&quot;You want to exchange &quot; + currency1 + &quot; to &quot; + currency2);</span>
+<span class="nc" id="L785">            label3.setBounds(50, 50, 300, 30);</span>
+<span class="nc" id="L786">            exchange_frame.add(label3);</span>
+
+<span class="nc" id="L788">            JButton back1 = new JButton(&quot;Back&quot;);</span>
+<span class="nc" id="L789">            back1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="nc" id="L790">            mouseOnButton(back1);</span>
+<span class="nc" id="L791">            back1.setBounds(50, 200, 80, 30);</span>
+<span class="nc" id="L792">            exchange_frame.add(back1);</span>
+<span class="nc" id="L793">            back1.addActionListener(e1 -&gt; {</span>
+<span class="nc" id="L794">                exchange_frame.dispose();</span>
+<span class="nc" id="L795">                exchange(adminUser, user);</span>
+<span class="nc" id="L796">            });</span>
+
+            //add a text field to input the amount
+<span class="nc" id="L799">            JTextField textField = new JTextField();</span>
+<span class="nc" id="L800">            textField.setBounds(50, 100, 100, 30);</span>
+<span class="nc" id="L801">            exchange_frame.add(textField);</span>
+            //add a button to confirm the amount
+<span class="nc" id="L803">            JButton confirm3 = new JButton(&quot;confirm&quot;);</span>
+<span class="nc" id="L804">            confirm3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="nc" id="L805">            mouseOnButton(confirm3);</span>
+<span class="nc" id="L806">            confirm3.setBounds(200, 100, 80, 30);</span>
+<span class="nc" id="L807">            exchange_frame.add(confirm3);</span>
+            //create a variable to store the amount
+
+<span class="nc" id="L810">            confirm3.addActionListener(e1 -&gt;{</span>
+                try {
+<span class="nc" id="L812">                    double amount = Double.parseDouble(textField.getText());</span>
+<span class="nc" id="L813">                    exchange_frame.getContentPane().removeAll();</span>
+<span class="nc" id="L814">                    exchange_frame.repaint();</span>
+
+<span class="nc" id="L816">                    JLabel label4 = new JLabel(&quot;Congratulations! \n You can get &quot; + (Math.round(amount * Double.parseDouble(rateList.get(comboBox2.getSelectedIndex()).getRate()[comboBox1.getSelectedIndex()]))) +  &quot; &quot; + currency2);</span>
+                    // larger the font
+<span class="nc" id="L818">                    label4.setFont(new Font(&quot;Serif&quot;, Font.PLAIN, 20));</span>
+<span class="nc" id="L819">                    label4.setBounds(50, 120, 400, 30);</span>
+<span class="nc" id="L820">                    exchange_frame.add(label4);</span>
+
+<span class="nc" id="L822">                    JButton back = new JButton(&quot;Back&quot;);</span>
+<span class="nc" id="L823">                    back.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="nc" id="L824">                    mouseOnButton(back);</span>
+<span class="nc" id="L825">                    back.setBounds(200, 200, 80, 30);</span>
+<span class="nc" id="L826">                    exchange_frame.add(back);</span>
+<span class="nc" id="L827">                    back.addActionListener(e2 -&gt; {</span>
+<span class="nc" id="L828">                        exchange_frame.dispose();</span>
+<span class="nc" id="L829">                        normal_frame(adminUser, user);</span>
+<span class="nc" id="L830">                    });</span>
+<span class="nc" id="L831">                }catch (NumberFormatException e2){</span>
+<span class="nc" id="L832">                    JOptionPane.showMessageDialog(null, &quot;Please input a number!&quot;);</span>
+<span class="nc" id="L833">                    exchange_frame.dispose();</span>
+<span class="nc" id="L834">                    exchange(adminUser, user);</span>
+<span class="nc" id="L835">                }</span>
+                //clear the frame
+
+
+<span class="nc" id="L839">            });</span>
+<span class="nc" id="L840">        });</span>
+<span class="fc" id="L841">        JButton back = new JButton(&quot;Back&quot;);</span>
+<span class="fc" id="L842">        back.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L843">        mouseOnButton(back);</span>
+<span class="fc" id="L844">        back.setBounds(50, 220, 80, 30);</span>
+<span class="fc" id="L845">        exchange_frame.add(back);</span>
+<span class="fc" id="L846">        back.addActionListener(e1 -&gt; {</span>
+
+<span class="nc" id="L848">            normal_frame(adminUser,user);</span>
+<span class="nc" id="L849">            exchange_frame.dispose();</span>
+<span class="nc" id="L850">        });</span>
+<span class="fc" id="L851">        exchange_frame.setVisible(true);</span>
+<span class="fc" id="L852">    }</span>
+
+    public static void setRate(JFrame frame, Admin admin,NormalUser normalUser){
+
+
+        //remove the previous components
+<span class="fc" id="L858">        frame.getContentPane().removeAll();</span>
+<span class="fc" id="L859">        frame.repaint();</span>
+<span class="fc" id="L860">        JLabel label1 = new JLabel(&quot;Country from?&quot;);</span>
+<span class="fc" id="L861">        label1.setBounds(50, 50, 200, 30);</span>
+<span class="fc" id="L862">        frame.add(label1);</span>
+<span class="fc" id="L863">        exit_button(frame);</span>
+        //add a drop-down list contains all the currency
+<span class="fc" id="L865">        List&lt;Rate&gt; rateList = admin.rateList;</span>
+<span class="fc" id="L866">        JComboBox&lt;Object&gt; comboBox1 = new JComboBox&lt;&gt;(rateList.toArray());</span>
+<span class="fc" id="L867">        comboBox1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L868">        add_icon(comboBox1);</span>
+<span class="fc" id="L869">        comboBox1.setBounds(250, 50, 100, 30);</span>
+<span class="fc" id="L870">        frame.add(comboBox1);</span>
+
+<span class="fc" id="L872">        JLabel label3 = new JLabel(&quot;Country to?&quot;);</span>
+<span class="fc" id="L873">        label3.setBounds(50, 100, 200, 30);</span>
+<span class="fc" id="L874">        frame.add(label3);</span>
+        //add a drop-down list contains all the currency
+<span class="fc" id="L876">        List&lt;Rate&gt; rateList2 = admin.rateList;</span>
+<span class="fc" id="L877">        JComboBox&lt;Object&gt; comboBox2 = new JComboBox&lt;&gt;(rateList2.toArray());</span>
+<span class="fc" id="L878">        comboBox2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L879">        add_icon(comboBox2);</span>
+<span class="fc" id="L880">        comboBox2.setBounds(250, 100, 100, 30);</span>
+<span class="fc" id="L881">        frame.add(comboBox2);</span>
+
+
+
+        //add a button to confirm the currency
+<span class="fc" id="L886">        JButton confirm1 = new JButton(&quot;confirm&quot;);</span>
+<span class="fc" id="L887">        confirm1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L888">        mouseOnButton(confirm1);</span>
+<span class="fc" id="L889">        confirm1.setBounds(400, 150, 80, 30);</span>
+<span class="fc" id="L890">        frame.add(confirm1);</span>
+
+<span class="fc" id="L892">        JLabel label2 = new JLabel(&quot;What is the new rate?&quot;);</span>
+<span class="fc" id="L893">        label2.setBounds(50, 150, 200, 30);</span>
+<span class="fc" id="L894">        frame.add(label2);</span>
+        //add a text field to input the new rate
+<span class="fc" id="L896">        JTextField textField = new JTextField();</span>
+<span class="fc" id="L897">        textField.setBounds(250, 150, 100, 30);</span>
+<span class="fc" id="L898">        frame.add(textField);</span>
+
+<span class="fc" id="L900">        JButton back = new JButton(&quot;Back&quot;);</span>
+<span class="fc" id="L901">        back.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L902">        mouseOnButton(back);</span>
+<span class="fc" id="L903">        back.setBounds(50, 220, 80, 30);</span>
+<span class="fc" id="L904">        frame.add(back);</span>
+<span class="fc" id="L905">        back.addActionListener(e1 -&gt; {</span>
+
+<span class="nc" id="L907">            admin_frame( admin,normalUser);</span>
+<span class="nc" id="L908">            frame.dispose();</span>
+<span class="nc" id="L909">        });</span>
+
+        //create a variable to store the currency
+<span class="fc" id="L912">        confirm1.addActionListener(e -&gt;{</span>
+<span class="nc bnc" id="L913" title="All 2 branches missed.">            if(comboBox1.getSelectedIndex() == comboBox2.getSelectedIndex()){</span>
+<span class="nc" id="L914">                JOptionPane.showMessageDialog(null,&quot;please choose two different currency.&quot;);</span>
+            }
+            try{
+<span class="nc" id="L917">                double newRate = Double.parseDouble(textField.getText());</span>
+<span class="nc" id="L918">            }catch(Exception a){</span>
+<span class="nc" id="L919">                JOptionPane.showMessageDialog(null,&quot;please fill in the number.&quot;);</span>
+<span class="nc" id="L920">            }</span>
+<span class="nc" id="L921">            double newRate = Double.parseDouble(textField.getText());</span>
+<span class="nc" id="L922">            Rate currency = (Rate) Objects.requireNonNull(comboBox1.getSelectedItem());</span>
+<span class="nc bnc" id="L923" title="All 2 branches missed.">            for(int i = 0; i &lt; admin.rateList.size(); i ++){</span>
+                //find the currency in the list
+<span class="nc bnc" id="L925" title="All 2 branches missed.">                if(admin.rateList.get(i).getCountry().equals(currency.getCountry())){</span>
+                    //remove the currency from the list
+<span class="nc" id="L927">                    admin.setRate(rateList.get(i),rateList.get(comboBox2.getSelectedIndex()),newRate, String.valueOf(rateList.get(comboBox2.getSelectedIndex())) , String.valueOf(rateList.get(comboBox1.getSelectedIndex())));</span>
+<span class="nc" id="L928">                    JOptionPane.showMessageDialog(null, &quot;Set successfully!&quot;);</span>
+<span class="nc" id="L929">                    System.out.println(admin.rateList.get(i).getCountry() + &quot; &quot; +admin.rateList.get(i).getRate());</span>
+                }
+            }
+<span class="nc" id="L932">            rateTable(rateList);</span>
+
+
+
+<span class="nc" id="L936">        });</span>
+
+<span class="fc" id="L938">        frame.setVisible(true);</span>
+<span class="fc" id="L939">    }</span>
+
+    public static void addRate(JFrame jFrame,Admin admin, NormalUser normalUser){
+<span class="fc" id="L942">        ArrayList&lt;Double&gt; currencies = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L943">        jFrame.getContentPane().removeAll();</span>
+<span class="fc" id="L944">        jFrame.repaint();</span>
+<span class="fc" id="L945">        JLabel label1 = new JLabel(&quot;Enter a new type of currency&quot;);</span>
+<span class="fc" id="L946">        label1.setBounds(50, 100, 200, 30);</span>
+<span class="fc" id="L947">        jFrame.add(label1);</span>
+<span class="fc" id="L948">        exit_button(jFrame);</span>
+
+        // add back button
+<span class="fc" id="L951">        JButton back = new JButton(&quot;Back&quot;);</span>
+<span class="fc" id="L952">        back.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L953">        mouseOnButton(back);</span>
+<span class="fc" id="L954">        back.setBounds(50, 220, 80, 30);</span>
+<span class="fc" id="L955">        jFrame.add(back);</span>
+<span class="fc" id="L956">        back.addActionListener(e1 -&gt; {</span>
+
+<span class="nc" id="L958">            admin_frame( admin,normalUser);</span>
+<span class="nc" id="L959">            jFrame.dispose();</span>
+<span class="nc" id="L960">        });</span>
+
+<span class="fc" id="L962">        JTextField textField = new JTextField();</span>
+<span class="fc" id="L963">        textField.setBounds(250, 100, 100, 30);</span>
+<span class="fc" id="L964">        jFrame.add(textField);</span>
+
+        //add a button to confirm the amount
+<span class="fc" id="L967">        JButton confirm3 = new JButton(&quot;confirm&quot;);</span>
+<span class="fc" id="L968">        confirm3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L969">        mouseOnButton(confirm3);</span>
+<span class="fc" id="L970">        confirm3.setBounds(250, 150, 80, 30);</span>
+<span class="fc" id="L971">        jFrame.add(confirm3);</span>
+        //create a variable to store the amount
+
+<span class="fc" id="L974">        confirm3.addActionListener(e1 -&gt;{</span>
+<span class="nc" id="L975">            String newName = textField.getText();</span>
+<span class="nc" id="L976">            System.out.println(newName);</span>
+
+<span class="nc" id="L978">            ArrayList&lt;Double&gt; arr = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L979" title="All 2 branches missed.">            for(int i = 0; i &lt; admin.rateList.size(); i++){</span>
+<span class="nc" id="L980">                jFrame.dispose();</span>
+<span class="nc" id="L981">                getEachNewRate(jFrame,admin,normalUser,i,newName,arr);</span>
+            }
+<span class="nc" id="L983">        });</span>
+<span class="fc" id="L984">        admin_frame(admin,normalUser);</span>
+<span class="fc" id="L985">        jFrame.setVisible(true);</span>
+<span class="fc" id="L986">    }</span>
+
+    // delete a currency
+    public static void deleteRate(JFrame jFrame,Admin admin, NormalUser normalUser){
+
+<span class="fc" id="L991">        jFrame.getContentPane().removeAll();</span>
+<span class="fc" id="L992">        jFrame.repaint();</span>
+<span class="fc" id="L993">        JLabel label1 = new JLabel(&quot;Enter the currency you want to delete&quot;);</span>
+<span class="fc" id="L994">        label1.setBounds(20, 100, 230, 30);</span>
+<span class="fc" id="L995">        jFrame.add(label1);</span>
+<span class="fc" id="L996">        exit_button(jFrame);</span>
+
+        // add back button
+<span class="fc" id="L999">        JButton back = new JButton(&quot;Back&quot;);</span>
+<span class="fc" id="L1000">        back.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L1001">        mouseOnButton(back);</span>
+<span class="fc" id="L1002">        back.setBounds(50, 220, 80, 30);</span>
+<span class="fc" id="L1003">        jFrame.add(back);</span>
+<span class="fc" id="L1004">        back.addActionListener(e1 -&gt; {</span>
+
+<span class="nc" id="L1006">            admin_frame( admin,normalUser);</span>
+<span class="nc" id="L1007">            jFrame.dispose();</span>
+<span class="nc" id="L1008">        });</span>
+
+
+<span class="fc" id="L1011">        JComboBox&lt;Object&gt; comboBox1 = new JComboBox&lt;&gt;(admin.rateList.toArray());</span>
+<span class="fc" id="L1012">        comboBox1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L1013">        add_icon(comboBox1);</span>
+<span class="fc" id="L1014">        comboBox1.setBounds(250, 100, 100, 30);</span>
+<span class="fc" id="L1015">        jFrame.add(comboBox1);</span>
+
+        //add a button to confirm the amount
+<span class="fc" id="L1018">        JButton confirm3 = new JButton(&quot;confirm&quot;);</span>
+<span class="fc" id="L1019">        confirm3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L1020">        mouseOnButton(confirm3);</span>
+<span class="fc" id="L1021">        confirm3.setBounds(250, 150, 80, 30);</span>
+<span class="fc" id="L1022">        jFrame.add(confirm3);</span>
+        //create a variable to store the amount
+
+<span class="fc" id="L1025">        confirm3.addActionListener(e1 -&gt;{</span>
+//            jFrame.dispose();
+<span class="nc" id="L1027">            String newName = comboBox1.getSelectedItem().toString();</span>
+<span class="nc" id="L1028">            System.out.println(newName);</span>
+<span class="nc bnc" id="L1029" title="All 2 branches missed.">            for(int i = 0; i &lt; admin.rateList.size(); i++){</span>
+<span class="nc bnc" id="L1030" title="All 2 branches missed.">                if(admin.rateList.get(i).getCountry().equals(newName)){</span>
+<span class="nc bnc" id="L1031" title="All 2 branches missed.">                    if (admin.deleteRate(admin.rateList.get(i)) == 0) {</span>
+<span class="nc" id="L1032">                        JOptionPane.showMessageDialog(null, &quot;Delete successfully!&quot;);</span>
+                    } else {
+<span class="nc" id="L1034">                        JOptionPane.showMessageDialog(null, &quot;Cannot delete!&quot;);</span>
+                    }
+<span class="nc" id="L1036">                    deleteRate(jFrame,admin,normalUser);</span>
+                }
+            }
+<span class="nc" id="L1039">            rateTable(admin.rateList);</span>
+<span class="nc" id="L1040">        });</span>
+//        admin_frame(admin,normalUser);
+<span class="fc" id="L1042">        jFrame.setVisible(true);</span>
+<span class="fc" id="L1043">    }</span>
+
+    public static void getEachNewRate(JFrame jframe, Admin admin,NormalUser normalUser,int index,String newName,ArrayList&lt;Double&gt; arr){
+<span class="fc" id="L1046">        jframe.setVisible(false);</span>
+<span class="fc" id="L1047">        JFrame fm = new JFrame(&quot;Add new currency&quot;);</span>
+<span class="fc" id="L1048">        fm.setSize(500, 300);</span>
+<span class="fc" id="L1049">        fm.setLocationRelativeTo(null);</span>
+<span class="fc" id="L1050">        fm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="fc" id="L1051">        fm.setLayout(null);</span>
+<span class="fc" id="L1052">        exit_button(fm);</span>
+
+<span class="fc" id="L1054">        JLabel label1 = new JLabel(&quot;Enter the rate for &quot; + admin.rateList.get(index).getCountry());</span>
+<span class="fc" id="L1055">        label1.setFont(new Font(&quot;Arial&quot;, Font.PLAIN, 15));</span>
+<span class="fc" id="L1056">        label1.setBounds(50, 100, 200, 30);</span>
+<span class="fc" id="L1057">        fm.add(label1);</span>
+<span class="fc" id="L1058">        JTextField textField = new JTextField();</span>
+<span class="fc" id="L1059">        textField.setBounds(250, 100, 100, 30);</span>
+
+<span class="fc" id="L1061">        fm.add(textField);</span>
+
+<span class="fc" id="L1063">        JButton confirm3 = new JButton(&quot;confirm&quot;);</span>
+<span class="fc" id="L1064">        confirm3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L1065">        mouseOnButton(confirm3);</span>
+<span class="fc" id="L1066">        confirm3.setBounds(250, 150, 80, 30);</span>
+<span class="fc" id="L1067">        fm.add(confirm3);</span>
+<span class="fc" id="L1068">        confirm3.addActionListener(e -&gt;{</span>
+<span class="nc" id="L1069">            fm.dispose();</span>
+<span class="nc" id="L1070">            Double input = Double.parseDouble(textField.getText());</span>
+<span class="nc" id="L1071">            System.out.println(input);</span>
+<span class="nc" id="L1072">            fm.dispose();</span>
+<span class="nc" id="L1073">            JOptionPane.showMessageDialog(null, &quot;Set successfully for &quot; + admin.rateList.get(index).getCountry());</span>
+<span class="nc bnc" id="L1074" title="All 2 branches missed.">            if(index != 0){</span>
+<span class="nc" id="L1075">                arr.add(input);</span>
+//            Rate newRate
+            }else{
+<span class="nc" id="L1078">                arr.add(input);</span>
+<span class="nc" id="L1079">                System.out.println(arr);</span>
+<span class="nc bnc" id="L1080" title="All 2 branches missed.">                for(int i = 0; i &lt; admin.rateList.size(); i++){</span>
+<span class="nc" id="L1081">                    ArrayList&lt;String&gt; temp2 = new ArrayList&lt;&gt;(Arrays.asList(admin.rateList.get(i).getRate()));</span>
+<span class="nc" id="L1082">                    temp2.add(String.valueOf(1/arr.get(i)));</span>
+<span class="nc" id="L1083">                    admin.rateList.get(i).reNewRate(temp2.toArray(new String[0]));</span>
+<span class="nc" id="L1084">                    admin.rateList.get(i).getMap().put(admin.rateList.size(),0);</span>
+                }
+
+<span class="nc" id="L1087">                String x = arr.toString();</span>
+<span class="nc" id="L1088">                StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L1089">                sb.append(x);</span>
+<span class="nc" id="L1090">                sb.delete(sb.length() - 1, sb.length());</span>
+<span class="nc" id="L1091">                sb.delete(0,1);</span>
+<span class="nc" id="L1092">                System.out.println(sb);</span>
+<span class="nc" id="L1093">                sb = new StringBuilder(sb + &quot;,-&quot;);</span>
+<span class="nc" id="L1094">                x = sb.substring(0,sb.length());</span>
+<span class="nc" id="L1095">                System.out.println(x);</span>
+<span class="nc" id="L1096">                Rate newRate = new Rate(newName,x);</span>
+
+<span class="nc" id="L1098">                admin.rateList.add(newRate);</span>
+//                newRate.increasePopularity();
+<span class="nc" id="L1100">                ArrayList&lt;String&gt; temp = new ArrayList&lt;&gt;(Arrays.asList(App.countryArray));</span>
+<span class="nc" id="L1101">                temp.add(newName);</span>
+<span class="nc" id="L1102">                App.countryArray =  temp.toArray(new String[0]);</span>
+<span class="nc" id="L1103">                App.admin.update(admin.rateList);</span>
+
+<span class="nc" id="L1105">                newRate.getMap().put(admin.rateList.size()-1,0);</span>
+<span class="nc bnc" id="L1106" title="All 2 branches missed.">                for(Rate each: admin.rateList){</span>
+<span class="nc" id="L1107">                    System.out.println(each.getMap());</span>
+<span class="nc" id="L1108">                }</span>
+            }
+<span class="nc" id="L1110">        });</span>
+
+<span class="fc" id="L1112">        fm.setVisible(true);</span>
+
+<span class="fc" id="L1114">    }</span>
+
+    public static void admin_login_frame(Admin admin,NormalUser normalUser){
+<span class="fc" id="L1117">        JFrame login_frame = new JFrame(&quot;Login&quot;);</span>
+<span class="fc" id="L1118">        login_frame.setSize(500, 300);</span>
+<span class="fc" id="L1119">        login_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="fc" id="L1120">        login_frame.setLocationRelativeTo(null);</span>
+<span class="fc" id="L1121">        login_frame.setLayout(null);</span>
+<span class="fc" id="L1122">        login_frame.setTitle(&quot;Login&quot;);</span>
+<span class="fc" id="L1123">        exit_button(login_frame);</span>
+<span class="fc" id="L1124">        JLabel label1 = new JLabel(&quot;Username:&quot;);</span>
+<span class="fc" id="L1125">        label1.setBounds(50, 50, 100, 30);</span>
+<span class="fc" id="L1126">        login_frame.add(label1);</span>
+<span class="fc" id="L1127">        JTextField textField1 = new JTextField();</span>
+<span class="fc" id="L1128">        textField1.setBounds(150, 50, 100, 30);</span>
+<span class="fc" id="L1129">        login_frame.add(textField1);</span>
+<span class="fc" id="L1130">        JLabel label2 = new JLabel(&quot;Password:&quot;);</span>
+<span class="fc" id="L1131">        label2.setBounds(50, 100, 100, 30);</span>
+<span class="fc" id="L1132">        login_frame.add(label2);</span>
+
+<span class="fc" id="L1134">        JPasswordField textField2 = new JPasswordField();</span>
+<span class="fc" id="L1135">        textField2.setBounds(150, 100, 100, 30);</span>
+<span class="fc" id="L1136">        login_frame.add(textField2);</span>
+
+
+
+
+<span class="fc" id="L1141">        JButton login = new JButton(&quot;Login&quot;);</span>
+<span class="fc" id="L1142">        login.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L1143">        mouseOnButton(login);</span>
+<span class="fc" id="L1144">        login.setBounds(150, 150, 80, 30);</span>
+<span class="fc" id="L1145">        login_frame.add(login);</span>
+<span class="fc" id="L1146">        JLabel label3 = new JLabel(&quot;admin account: admin&quot;);</span>
+<span class="fc" id="L1147">        label3.setBounds(300, 50, 200, 30);</span>
+<span class="fc" id="L1148">        login_frame.add(label3);</span>
+<span class="fc" id="L1149">        JLabel label4 = new JLabel(&quot;admin password: 123&quot;);</span>
+<span class="fc" id="L1150">        label4.setBounds(300, 100, 200, 30);</span>
+<span class="fc" id="L1151">        login_frame.add(label4);</span>
+<span class="fc" id="L1152">        JButton back = new JButton(&quot;Back&quot;);</span>
+<span class="fc" id="L1153">        back.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));</span>
+<span class="fc" id="L1154">        mouseOnButton(back);</span>
+<span class="fc" id="L1155">        back.setBounds(50, 200, 80, 30);</span>
+<span class="fc" id="L1156">        login_frame.add(back);</span>
+<span class="fc" id="L1157">        back.addActionListener(e1 -&gt; {</span>
+<span class="nc" id="L1158">            displayWindow(admin,normalUser);</span>
+<span class="nc" id="L1159">        });</span>
+<span class="fc" id="L1160">        login.addActionListener(e -&gt; {</span>
+<span class="nc" id="L1161">            String username = textField1.getText();</span>
+<span class="nc" id="L1162">            String password = textField2.getText();</span>
+<span class="nc bnc" id="L1163" title="All 4 branches missed.">            if(username.equals(&quot;admin&quot;) &amp;&amp; password.equals(&quot;123&quot;)){</span>
+<span class="nc" id="L1164">                ImageIcon login_icon = new ImageIcon(&quot;src/images/login.png&quot;);</span>
+<span class="nc" id="L1165">                JOptionPane.showMessageDialog(null, &quot;Login successfully!&quot;, &quot;Login&quot;, JOptionPane.INFORMATION_MESSAGE,login_icon);</span>
+<span class="nc" id="L1166">                login_frame.dispose();</span>
+<span class="nc" id="L1167">                admin_frame(admin,normalUser);</span>
+<span class="nc" id="L1168">            }else{</span>
+<span class="nc" id="L1169">                JOptionPane.showMessageDialog(null, &quot;Wrong username or password!&quot;);</span>
+            }
+<span class="nc" id="L1171">        });</span>
+<span class="fc" id="L1172">        login_frame.setVisible(true);</span>
+<span class="fc" id="L1173">    }</span>
+
+    // when mouse on the button, larger the font
+    public static void mouseOnButton(JButton button) {
+<span class="fc" id="L1177">        button.addMouseListener(new java.awt.event.MouseAdapter() {</span>
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+<span class="nc" id="L1179">                button.setFont(new Font(&quot;Arial&quot;, Font.PLAIN, 15));</span>
+<span class="nc" id="L1180">            }</span>
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+<span class="nc" id="L1183">                button.setFont(new Font(&quot;Arial&quot;, Font.PLAIN, 13));</span>
+<span class="nc" id="L1184">            }</span>
+        });
+<span class="fc" id="L1186">    }</span>
+
+    // beautiful the UI
+    public static void beautiful_ui(){
+        try{
+<span class="pc bpc" id="L1191" title="1 of 2 branches missed.">            for(javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()){</span>
+<span class="fc bfc" id="L1192" title="All 2 branches covered.">                if(&quot;Nimbus&quot;.equals(info.getName())){</span>
+<span class="fc" id="L1193">                    javax.swing.UIManager.setLookAndFeel(info.getClassName());</span>
+<span class="fc" id="L1194">                    break;</span>
+                }
+            }
+<span class="nc" id="L1197">        }catch (Exception e){</span>
+<span class="nc" id="L1198">            System.out.println(e);</span>
+<span class="fc" id="L1199">        }</span>
+<span class="fc" id="L1200">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
