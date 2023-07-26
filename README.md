@@ -38,3 +38,6 @@
        These functions have been tested by JUnit. The rest of the UI functions are not tested by JUnit.
     3. Due to some reason, There is no commit to show on insight for Zechao Sun, but he actually do the whole Junit test
        and have some commits.
+<img width="361" alt="屏幕截图 2023-07-27 012216" src="https://github.com/DokiHollin/CurrencyExchanger/assets/93866170/57d1f0ca-3360-4310-9247-40a8e3765827">
+<img width="357" alt="屏幕截图 2023-07-27 012200" src="https://github.com/DokiHollin/CurrencyExchanger/assets/93866170/e15c4e66-d432-4005-978c-786b6ecfa131">
+<img width="359" alt="屏幕截图 2023-07-27 012234" src="https://github.com/DokiHollin/CurrencyExchanger/assets/93866170/5855872b-3a04-4f97-81b6-a0cbe674d1ee">
